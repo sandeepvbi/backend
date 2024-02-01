@@ -4,8 +4,8 @@ const router= express.Router();
 
 //Create a New Role In DB
 router.post('/create', newRole);
-router.put('/:id',updateRole);
+router.put('/upadte/:id',updateRole);
 router.get('/',getAllRoles);
-router.delete('/:id',deleteRoles)
+router.delete('/delete/:id',deleteRoles)
 
 module.exports= router;

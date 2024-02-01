@@ -1,24 +1,22 @@
-const mongoose = require('mongoose')
-const userToken = mongoose.Schema;
+const mongoose = require('mongoose');
 
-const userTokenJwt = new userToken(
+const TokenSchema = mongoose.Schema(
     {
-        userId :{
-            type:userToken.Types.ObjectId,
+        userId:{
+            type: mongoose.Schema.Types.ObjectId,
             require:true,
-            ref:"user"
+            ref:"User"
         },
-        token :{
+        token:{
             type:String,
             require:true
         },
-        createdAt :{
+        createdAt:{
             type:Date,
             default:Date.now,
-            expired:300
-        },
+            expires :300
+        }
     }
 );
-
-const userTokenr= mongoose.model('Token',userTokenJwt);
-module.exports= userTokenr;
+const UserToken = mongoose.model('Token',TokenSchema);
+module.exports=UserToken;

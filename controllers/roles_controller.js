@@ -1,9 +1,9 @@
-const role = require('../models/Roles');
+const Role = require('../models/Roles');
 const newRole =async(req,res)=>{
     try {
         if(req.body.role && req.body.role !=""){
             // const newUser= new User({email,password});
-            const newRole = new role(req.body)
+            const newRole = new Role(req.body)
             await newRole.save();
            return res.send("roles was created") 
         } else{
@@ -16,9 +16,9 @@ const newRole =async(req,res)=>{
 
 const updateRole =async(req,res)=>{
    try {
-    const updaterole = await role.findById({_id:req.params.id});
+    const updaterole = await Role.findById({_id:req.params.id});
     if(updaterole){
-        const newData = await role.findByIdAndUpdate(
+        const newData = await Role.findByIdAndUpdate(
             req.params.id,
             {$set:req.body._id},
             {upsert:true}
@@ -34,7 +34,7 @@ const updateRole =async(req,res)=>{
 
 const getAllRoles = async(req,res,next)=>{
   try {
-    const roles = await role.find();
+    const roles = await Role.find();
     return res.status(200).send(roles);
   } catch (error) {
     return res.status(500).send('internal server Error')
